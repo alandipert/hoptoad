@@ -3,7 +3,7 @@
         org.dipert.hoptoad))
 
 (defn make-stacktrace-elem []
-  (StackTraceElement. "SomeClass"
+  (StackTraceElement. "org.dipert.SomeClass"
                       "someMethod"
                       "somefile.java"
                       234))
@@ -22,7 +22,7 @@
     (is (= (count lines) 5))
     (are [x y] (= (x first-scrape) y)
          :method "someMethod"
-         :file "somefile.java"
+         :file "org.dipert.SomeClass(somefile.java)"
          :number 234)))
 
 (deftest t-make-notice

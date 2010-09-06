@@ -1,6 +1,11 @@
 (ns org.dipert.hoptoad
   "Hoptoad notifications for Clojure apps")
 
+;; (spit "/tmp/lol"
+;;       (binding [*prxml-indent* 2]
+;;         (with-out-str
+;;           (prxml [:decl! "1.0"] (make-notice "1234" (Exception. "LOL!" ))))))
+
 (def notifier
   {:name "Clojure Hoptoad Notifier"
    :version "1.0.0"
@@ -39,7 +44,7 @@
   (map #(hash-map
          :method (.getMethodName %)
          :number (.getLineNumber %)
-         :file (.getFileName %))
+         :file (str (.getClassName %) "(" (.getFileName %) ")"))
        (.getStackTrace e)))
 
 (defn build-lines
